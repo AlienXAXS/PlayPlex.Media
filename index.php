@@ -392,31 +392,32 @@
 								  <div class="shared-partial uptime-90-days-wrapper">
 									  <svg class="availability-time-line-graphic" id="uptime-component-rhznvxg4v7yh" preserveAspectRatio="none" height="34" viewBox="0 0 448 34">');
 									  
-									  $blipNumber = 0;
-									  $xOffset = 0;
-									  $color = "#0000FF"; //Set to blue by default, just to see errors
-									  foreach ( $service->metrics as $metric )
-									  {
-										switch ( $metric->status )
-										{
-											case -1: $color = "#AAAAAA"; break;
-											case 0: $color = "#ff0000"; break;
-											case 1: $color = "#43b581"; break;
-											
-										}
-										echo ( '<rect height="34" width="3" x="' . $xOffset . '" y="0" fill="' . $color . '" class="uptime-day day-' . $blipNumber . '" data-html="true"></rect>' );
-										
-										$xOffset = $xOffset + 5;
-										$blipNumber++;
-									  }
-										
+					$blipNumber = 0;
+					$xOffset = 0;
+					$color = "#0000FF"; //Set to blue by default, just to see errors
+					foreach ( $service->metrics as $metric )
+					{
+						switch ( $metric->status )
+						{
+							case -1: $color = "#AAAAAA"; break;
+							case 0: $color = "#ff0000"; break;
+							case 1: $color = "#43b581"; break;
+						}
+						echo ( '<rect height="34" width="3" x="' . $xOffset . '" y="0" fill="' . $color . '" class="uptime-day day-' . $blipNumber . '" data-html="true"></rect>' );
 
+						$xOffset = $xOffset + 5;
+						$blipNumber++;
+					}
+										
+					$timeAgo = new DateTime($service->metrics[sizeof($service->metrics)-1]->date);
+					$timeNow = new DateTime();
+					$timeDiff = $timeNow->diff($timeAgo);
 					echo ('				</svg>
 									  <div class="legend ">
 									  <div class="legend-item light legend-item-date-range"><span class="availability-time-line-legend-day-count">' . (($CONFIG->timespan * 5) / 60) . ' </span> hours ago</div>
 									  <div class="spacer"></div>
 									  
-									  <div class="legend-item light legend-item-date-range">Now</div>
+									  <div class="legend-item light legend-item-date-range">' . ($timeDiff->format("%i") == "0" ? $timeDiff->format("%ss second(s)") : $timeDiff->format("%i minute(s)")) . ' ago</div>
 									</div>
 
 									</div>
