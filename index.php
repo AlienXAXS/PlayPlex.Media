@@ -414,9 +414,12 @@
 					$timeDiff = $timeNow->diff($timeAgo);
 					echo ('				</svg>
 									  <div class="legend ">
+									  
 									  <div class="legend-item light legend-item-date-range"><span class="availability-time-line-legend-day-count">' . (($CONFIG->timespan * 5) / 60) . ' </span> hours ago</div>
 									  <div class="spacer"></div>
+									  <div class="legend-item legend-item-uptime-value legend-item-9lgt8qqpcqck"><span id="uptime-percent-9lgt8qqpcqck">' . $service->description . '</span></div>
 									  
+									  <div class="spacer"></div>
 									  <div class="legend-item light legend-item-date-range">' . ($timeDiff->format("%i") == "0" ? $timeDiff->format("%ss second(s)") : $timeDiff->format("%i minute(s)")) . ' ago</div>
 									</div>
 
