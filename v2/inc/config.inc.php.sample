@@ -1,0 +1,21 @@
+<?php
+	
+	class Config()
+	{
+		private $DATABASE['host'] = "localhost";
+		private $DATABASE['port'] = 3306;
+		private $DATABASE['dbname'] = "database";
+		private $DATABASE['dbuser'] = "username";
+		private $DATABASE['dbpass'] = "password";
+	
+		public function GetDatabaseConfig()
+		{
+			return $this->$DATABASE;
+		}
+	
+	}
+	
+	// Create an instance of our class here.
+	global $CONFIG = new Config;
+	
+?>
