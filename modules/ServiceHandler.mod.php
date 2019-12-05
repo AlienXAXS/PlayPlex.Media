@@ -87,10 +87,13 @@
 			
 			$dbCon = $this->config->GetDatabaseConfig()->databaseConnection;			
 			$dbCon->where('sid', $id);
-			$dbCon->orderBy('created', 'asc');
+			$dbCon->orderBy('created', 'desc');
 			$results = $dbCon->get('status', $timespan);
 			if ( $results )
 			{
+				
+				$results = array_reverse($results);
+				
 				// Ensure we always have $timespan days worth of data for the render
 				for ($i=1 ; $i <= ($timespan - sizeof($results)) ; $i++)
 					$service->AddMetric(null, -1);
