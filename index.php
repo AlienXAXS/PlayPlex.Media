@@ -365,7 +365,9 @@
     <div class="container">
         <div class="page-status status-<?=$allSystemsOperational ? "none" : "critical"?>">
           <span class="status font-large">
+		  <div align="center">
 		    <?=$allSystemsOperational ? "All Systems Operational" : "Problems Detected!"?>
+			</div>
           </span>
         </div>
 
