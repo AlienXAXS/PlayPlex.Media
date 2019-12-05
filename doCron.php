@@ -75,7 +75,7 @@
 		}
 	}
 	
-	ConsoleEcho ("Starting php doCron Task for PlayPlexMedia Status", "green");
+	ConsoleEcho ("Starting php doCron Task for PlayPlexMedia Status at " . $currentTimeStamp, "green");
 	ConsoleEcho("");
 
 	foreach ( $serviceHandler->services as $service )
