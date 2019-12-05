@@ -1,21 +1,48 @@
 <?php
+	require_once("modules/modules.inc.php");
 	
-	class Config()
+	class Database
 	{
-		private $DATABASE['host'] = "localhost";
-		private $DATABASE['port'] = 3306;
-		private $DATABASE['dbname'] = "database";
-		private $DATABASE['dbuser'] = "username";
-		private $DATABASE['dbpass'] = "password";
+		public $host;
+		public $port;
+		public $dbname;
+		public $dbuser;
+		public $dbpassword;
+		
+		public $databaseConnection = null;
+		
+		function __construct($host,$port,$dbname,$dbuser,$dbpassword)
+		{
+			$this->host = $host;
+			$this->port = $port;
+			$this->dbname = $dbname;
+			$this->dbuser = $dbuser;
+			$this->dbpassword = $dbpassword;
+		}
+	}
 	
+	class Config
+	{
+		private $Database = null;
+		public $timespan = 90; //Timespan in days to get the data from SQL
+		
 		public function GetDatabaseConfig()
 		{
-			return $this->$DATABASE;
+			return $this->Database;
 		}
-	
+		
+		public function SetDatabaseConfig($host, $port, $dbname, $dbuser, $dbpassword)
+		{
+			$this->Database = new Database($host,$port,$dbname,$dbuser,$dbpassword);
+		}
 	}
 	
 	// Create an instance of our class here.
-	global $CONFIG = new Config;
+	$CONFIG = new Config;
+	$CONFIG->SetDatabaseConfig("localhost", 3306, "dbname", "username", "password");	
 	
+	$dbConfig = $CONFIG->GetDatabaseConfig();
+	$dbConfig->databaseConnection = new DatabaseHandler($dbConfig->host, $dbConfig->dbuser, $dbConfig->dbpassword, $dbConfig->dbname);
+	
+	$serviceHandler = new ServiceHandler($CONFIG);
 ?>
