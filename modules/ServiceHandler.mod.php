@@ -57,6 +57,7 @@
 		private function LoadServices()
 		{
 			$dbCon = $this->config->GetDatabaseConfig()->databaseConnection;
+			$dbCon->orderBy('zorder', 'ASC');
 			$services = $dbCon->get('services');
 			
 			foreach ( $services as $service )

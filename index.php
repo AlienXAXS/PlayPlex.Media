@@ -21,6 +21,16 @@
     <!-- Mobile IE allows us to activate ClearType technology for smoothing fonts for easy reading -->
     <meta http-equiv="cleartype" content="on">
 
+	<script type="text/javascript" src="inc/netdata/dashboard.js"></script>
+	
+	<script>
+		var netdataTheme = 'slate';
+		var netdataNoBootstrap = true;
+		NETDATA.options.current.destroy_on_hide = false;
+		NETDATA.options.current.parallel_refresher = true;
+		NETDATA.options.current.stop_updates_when_focus_is_lost = false;
+	</script>
+
     <!-- Le fonts -->
 	<style>
 	  @font-face {
@@ -372,6 +382,61 @@
         </div>
 
         <div class="components-section font-regular">
+		
+		<div class="components-container one-column">
+			<!-- SERVICE CONTAINER START -->
+			<div class="component-container border-color">
+				<div class="component-inner-container status-green showcased">
+				   <span class="name">
+					  Home Network Stats
+				   </span>
+				   <br />
+				   <div align="center">
+					<div class="netdata-container-gauge"
+						style="width: 26%;"
+						data-netdata="system.cpu"
+						data-chart-library="gauge"
+						data-title="CPU"
+						data-units="%"
+						data-gauge-max-value="100"
+						data-width="26%"
+						data-after="-720"
+						data-points="720"
+						data-colors="#22AA99"
+						role="application"></div>
+					
+					<div class="netdata-container-easypiechart"
+						style="width: 17%;"
+						data-netdata="net.pppoe0"
+						data-dimensions="received"
+						data-chart-library="easypiechart"
+						data-title="Net Inbound"
+						data-width="17%"
+						data-before="0"
+						data-after="-540"
+						data-points="540"
+						data-common-units="system.net.mainhead"
+						data-colors="#EE9911"
+						role="application"></div>
+					
+					<div class="netdata-container-easypiechart"
+						style="width: 17%;"
+						data-netdata="net.pppoe0"
+						data-dimensions="sent"
+						data-chart-library="easypiechart"
+						data-title="Net Outbound"
+						data-width="17%"
+						data-before="0"
+						data-after="-540"
+						data-points="540"
+						data-common-units="system.net.mainhead"
+						data-colors="#DD4400"
+						role="application"></div>
+				</div>
+				</div>
+			</div>
+			<!-- SERVICE CONTAINER END -->
+		</div>
 			<hr>
 			
 			<?php
@@ -434,15 +499,6 @@
 						</div>
 						<hr>');
 				}
-				
-				/*
-				<?php
-								  
-								  if ( !$plexCTTest ) {
-									echo  "<br /> <div align=\"center\">PLEX is currently offline for maintenance.</div>";
-								  }
-								  ?>
-				*/
 			?>
 			
 			

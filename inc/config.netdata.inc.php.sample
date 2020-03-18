@@ -1,0 +1,5 @@
+<?php
+	return array(
+		'netdataRouterRemoteUrl' => 'http://NETDATA_IP_ADDRESS:PORT/api/v1/'
+	);
+?>
